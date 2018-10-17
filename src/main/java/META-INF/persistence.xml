@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="game-inviter">
+		<class>org.zero.studio.game.inviter.model.Ability</class>
+		<class>org.zero.studio.game.inviter.model.AbilityLevel</class>
+		<class>org.zero.studio.game.inviter.model.Activety</class>
+		<class>org.zero.studio.game.inviter.model.ActivetyArenaConfig</class>
+		<class>org.zero.studio.game.inviter.model.ActivetyConfig</class>
+		<class>org.zero.studio.game.inviter.model.ActivetyJoin</class>
+		<class>org.zero.studio.game.inviter.model.ActivetyLevel</class>
+		<class>org.zero.studio.game.inviter.model.Arena</class>
+		<class>org.zero.studio.game.inviter.model.ArenaCourt</class>
+		<class>org.zero.studio.game.inviter.model.ArenaCourtFixSchedule</class>
+		<class>org.zero.studio.game.inviter.model.ArenaCourtReserve</class>
+		<class>org.zero.studio.game.inviter.model.ArenaCourtStatus</class>
+		<class>org.zero.studio.game.inviter.model.ArenaFee</class>
+		<class>org.zero.studio.game.inviter.model.ArenaPreferentialPolicy</class>
+		<class>org.zero.studio.game.inviter.model.FlowCashIn</class>
+		<class>org.zero.studio.game.inviter.model.FlowCashOut</class>
+		<class>org.zero.studio.game.inviter.model.FlowRedPacketIn</class>
+		<class>org.zero.studio.game.inviter.model.FlowRedPacketOut</class>
+		<class>org.zero.studio.game.inviter.model.Player</class>
+		<class>org.zero.studio.game.inviter.model.PlayerAbility</class>
+		<class>org.zero.studio.game.inviter.model.PlayerLogin</class>
+		<class>org.zero.studio.game.inviter.model.PlayerLoginType</class>
+		<class>org.zero.studio.game.inviter.model.Wallet</class>
+		<!-- <class>org.zero.studio.game.inviter.model.ArenaActivetyJoin</class> -->
+		<!-- <class>org.zero.studio.game.inviter.model.ArenaCourtSchedule</class> -->
+		<!-- <class>org.zero.studio.game.inviter.model.PlayerAbility</class> -->
+		<properties>
+			<!--自动输出schema创建DDL语句 value的值可以是 create-drop / create / update 值得注意的是create-drop他会在SESSION关闭后删除所有表开启式再创建。 -->
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" />
+
+			<!--删除/重建SQL架构 -->
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create" />
+			<!--格式化SQL -->
+			<property name="hibernate.format_sql" value="true" />
+
+			<property name="hibernate.use_sql_comments" value="true" />
+
+		</properties>
+	</persistence-unit>
+</persistence>
