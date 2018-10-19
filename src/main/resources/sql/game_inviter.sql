@@ -47,7 +47,7 @@ CREATE TABLE `ability_level` (
 DROP TABLE IF EXISTS `activety`;
 
 CREATE TABLE `activety` (
-  `id` bigint(20) NOT NULL COMMENT '活动主键ID',
+  `id` bigint(20) NOT NULL COMMENT '活动主键ID(pid)',
   `ability_id` smallint(6) NOT NULL COMMENT '运动类型ID',
   `activety_level_id` tinyint(4) DEFAULT NULL COMMENT '活动级别ID',
   `activety_arena_config_id` int(11) NOT NULL COMMENT '活动场馆配置ID',
@@ -102,9 +102,10 @@ CREATE TABLE `activety_config` (
 DROP TABLE IF EXISTS `activety_join`;
 
 CREATE TABLE `activety_join` (
-  `id` bigint(20) NOT NULL COMMENT '参与活动ID',
+  `id` bigint(20) NOT NULL COMMENT '参与活动ID(pid)',
   `activety_id` bigint(20) NOT NULL COMMENT '活动ID',
   `player_id` bigint(20) NOT NULL COMMENT '参与人ID',
+  `extra_number` tinyint(4) DEFAULT '0' COMMENT '附加人数(影响参与人数和支付金额,且提醒用户附加人员需满足活动条件)',
   `status` tinyint(4) NOT NULL COMMENT '状态',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -183,7 +184,7 @@ CREATE TABLE `arena_court_fix_schedule` (
 DROP TABLE IF EXISTS `arena_court_reserve`;
 
 CREATE TABLE `arena_court_reserve` (
-  `id` bigint(20) NOT NULL COMMENT '场地预约ID',
+  `id` bigint(20) NOT NULL COMMENT '场地预约ID(pid)',
   `arena_court_id` int(11) DEFAULT NULL COMMENT '场地ID',
   `begin_time` datetime DEFAULT NULL COMMENT '开始时间',
   `comment` varchar(255) DEFAULT NULL COMMENT '备注',
@@ -326,7 +327,7 @@ CREATE TABLE `flow_red_packet_out` (
 DROP TABLE IF EXISTS `player`;
 
 CREATE TABLE `player` (
-  `id` bigint(20) NOT NULL COMMENT '用户ID',
+  `id` bigint(20) NOT NULL COMMENT '用户ID(pid)',
   `age` tinyint(4) DEFAULT NULL COMMENT '年龄',
   `name` varchar(255) DEFAULT NULL COMMENT '姓名',
   `grender` tinyint(4) DEFAULT NULL COMMENT '性别:0女性,1男性',
@@ -347,7 +348,8 @@ CREATE TABLE `player_ability` (
   `player_id` bigint(20) NOT NULL COMMENT '用户ID',
   `ability_id` int(11) NOT NULL COMMENT '运动类型ID',
   `ability_level_id` int(11) DEFAULT NULL COMMENT '运动等级ID',
-  `comment` varchar(200) DEFAULT NULL COMMENT '备注'
+  `comment` varchar(200) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`player_id`,`ability_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `player_ability` */
@@ -361,7 +363,7 @@ CREATE TABLE `player_login` (
   `username` varchar(50) NOT NULL COMMENT '登录用户名',
   `password` varchar(50) DEFAULT NULL COMMENT '登录密码',
   `login_type_id` tinyint(4) NOT NULL COMMENT '登录类型ID',
-  PRIMARY KEY (`player_id`)
+  PRIMARY KEY (`player_id`,`login_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `player_login` */
