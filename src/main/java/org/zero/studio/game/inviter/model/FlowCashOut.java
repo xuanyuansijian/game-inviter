@@ -19,10 +19,13 @@ public class FlowCashOut implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false, length=255)
 	private String id;
 
+	@Column(precision=10)
 	private BigDecimal amount;
 
+	@Column(length=255)
 	private String comment;
 
 	@Column(name="player_id")
@@ -33,7 +36,7 @@ public class FlowCashOut implements Serializable {
 	@Column(name="type_match_action_id")
 	private BigInteger typeMatchActionId;
 
-	@Column(name="unique_access_str")
+	@Column(name="unique_access_str", length=255)
 	private String uniqueAccessStr;
 
 	@Temporal(TemporalType.TIMESTAMP)

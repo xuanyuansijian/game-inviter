@@ -2,6 +2,7 @@ package org.zero.studio.game.inviter.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigInteger;
 
 
 /**
@@ -16,25 +17,30 @@ public class PlayerLogin implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="player_id")
-	private String playerId;
+	@Column(unique=true, nullable=false)
+	private String id;
 
-	@Column(name="login_type_id")
+	@Column(name="login_type_id", nullable=false)
 	private byte loginTypeId;
 
+	@Column(length=50)
 	private String password;
 
+	@Column(name="player_id", nullable=false)
+	private BigInteger playerId;
+
+	@Column(nullable=false, length=50)
 	private String username;
 
 	public PlayerLogin() {
 	}
 
-	public String getPlayerId() {
-		return this.playerId;
+	public String getId() {
+		return this.id;
 	}
 
-	public void setPlayerId(String playerId) {
-		this.playerId = playerId;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public byte getLoginTypeId() {
@@ -51,6 +57,14 @@ public class PlayerLogin implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public BigInteger getPlayerId() {
+		return this.playerId;
+	}
+
+	public void setPlayerId(BigInteger playerId) {
+		this.playerId = playerId;
 	}
 
 	public String getUsername() {

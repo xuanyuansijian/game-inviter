@@ -11,33 +11,36 @@ import java.math.BigInteger;
  * 
  */
 @Entity
+@Table(name="activety")
 @NamedQuery(name="Activety.findAll", query="SELECT a FROM Activety a")
 public class Activety implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	private String id;
 
-	@Column(name="ability_id")
+	@Column(name="ability_id", nullable=false)
 	private short abilityId;
 
-	@Column(name="activety_arena_config_id")
+	@Column(name="activety_arena_config_id", nullable=false)
 	private int activetyArenaConfigId;
 
 	@Column(name="activety_level_id")
 	private byte activetyLevelId;
 
 	@Column(name="arena_fee_id")
-	private String arenaFeeId;
+	private int arenaFeeId;
 
-	@Column(name="arena_id")
+	@Column(name="arena_id", nullable=false)
 	private int arenaId;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="begin_time")
 	private Date beginTime;
 
+	@Column(length=255)
 	private String comment;
 
 	@Column(name="duration_hours")
@@ -60,6 +63,7 @@ public class Activety implements Serializable {
 	@Column(name="min_age_limit")
 	private byte minAgeLimit;
 
+	@Column(length=255)
 	private String name;
 
 	private byte status;
@@ -99,11 +103,11 @@ public class Activety implements Serializable {
 		this.activetyLevelId = activetyLevelId;
 	}
 
-	public String getArenaFeeId() {
+	public int getArenaFeeId() {
 		return this.arenaFeeId;
 	}
 
-	public void setArenaFeeId(String arenaFeeId) {
+	public void setArenaFeeId(int arenaFeeId) {
 		this.arenaFeeId = arenaFeeId;
 	}
 

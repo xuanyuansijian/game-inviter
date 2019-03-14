@@ -15,18 +15,32 @@ import java.math.BigInteger;
 public class PlayerAbility implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="ability_id")
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
+	private String id;
+
+	@Column(name="ability_id", nullable=false)
 	private int abilityId;
 
 	@Column(name="ability_level_id")
 	private int abilityLevelId;
 
+	@Column(length=200)
 	private String comment;
 
-	@Column(name="player_id")
+	@Column(name="player_id", nullable=false)
 	private BigInteger playerId;
 
 	public PlayerAbility() {
+	}
+
+	public String getId() {
+		return this.id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public int getAbilityId() {

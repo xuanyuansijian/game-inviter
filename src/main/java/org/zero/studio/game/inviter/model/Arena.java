@@ -12,22 +12,26 @@ import java.util.Date;
  * 
  */
 @Entity
+@Table(name="arena")
 @NamedQuery(name="Arena.findAll", query="SELECT a FROM Arena a")
 public class Arena implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	private int id;
 
-	@Column(name="ability_id")
+	@Column(name="ability_id", nullable=false)
 	private short abilityId;
 
+	@Column(nullable=false, length=255)
 	private String address;
 
 	@Column(name="close_time")
 	private Time closeTime;
 
+	@Column(length=255)
 	private String comment;
 
 	@Column(name="court_amount")
@@ -41,19 +45,23 @@ public class Arena implements Serializable {
 	@Column(name="last_update_time")
 	private Date lastUpdateTime;
 
-	@Column(name="location_x")
+	@Column(name="location_x", precision=38)
 	private BigDecimal locationX;
 
-	@Column(name="location_y")
+	@Column(name="location_y", precision=38)
 	private BigDecimal locationY;
 
+	@Column(nullable=false, length=255)
 	private String name;
 
 	@Column(name="open_time")
 	private Time openTime;
 
-	@Column(name="phone_number")
+	@Column(name="phone_number", nullable=false, length=255)
 	private String phoneNumber;
+
+	@Column(nullable=false)
+	private byte type;
 
 	public Arena() {
 	}
@@ -160,6 +168,14 @@ public class Arena implements Serializable {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	public byte getType() {
+		return this.type;
+	}
+
+	public void setType(byte type) {
+		this.type = type;
 	}
 
 }

@@ -16,10 +16,13 @@ public class ArenaCourtStatus implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	private short id;
 
+	@Column(nullable=false, length=50)
 	private String explain;
 
+	@Column(nullable=false)
 	private byte status;
 
 	public ArenaCourtStatus() {

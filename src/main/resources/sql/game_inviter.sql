@@ -143,6 +143,7 @@ CREATE TABLE `arena` (
   `name` varchar(255) NOT NULL COMMENT '场馆名称',
   `open_time` time DEFAULT NULL COMMENT '场馆开馆时间',
   `phone_number` varchar(255) NOT NULL COMMENT '场馆电话',
+  `type` tinyint(4) NOT NULL DEFAULT '1' COMMENT '场馆类型:0免费场馆,1营利场馆',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -345,11 +346,12 @@ CREATE TABLE `player` (
 DROP TABLE IF EXISTS `player_ability`;
 
 CREATE TABLE `player_ability` (
+  `id` bigint(20) NOT NULL COMMENT '用户运动类型ID',
   `player_id` bigint(20) NOT NULL COMMENT '用户ID',
   `ability_id` int(11) NOT NULL COMMENT '运动类型ID',
   `ability_level_id` int(11) DEFAULT NULL COMMENT '运动等级ID',
   `comment` varchar(200) DEFAULT NULL COMMENT '备注',
-  PRIMARY KEY (`player_id`,`ability_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `player_ability` */
@@ -359,11 +361,12 @@ CREATE TABLE `player_ability` (
 DROP TABLE IF EXISTS `player_login`;
 
 CREATE TABLE `player_login` (
+  `id` bigint(20) NOT NULL COMMENT '用户登录iD',
   `player_id` bigint(20) NOT NULL COMMENT '用户ID',
   `username` varchar(50) NOT NULL COMMENT '登录用户名',
   `password` varchar(50) DEFAULT NULL COMMENT '登录密码',
   `login_type_id` tinyint(4) NOT NULL COMMENT '登录类型ID',
-  PRIMARY KEY (`player_id`,`login_type_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `player_login` */
@@ -395,6 +398,22 @@ CREATE TABLE `wallet` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `wallet` */
+
+/*Table structure for table `zero_idea` */
+
+DROP TABLE IF EXISTS `zero_idea`;
+
+CREATE TABLE `zero_idea` (
+  `id` smallint(6) NOT NULL AUTO_INCREMENT,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `title` varchar(20) DEFAULT NULL,
+  `content` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+/*Data for the table `zero_idea` */
+
+insert  into `zero_idea`(`id`,`create_time`,`title`,`content`) values (1,'2019-03-14 10:59:00','公共免费场馆','对于公共免费场地, 是否需要增加类似群主的设定. 对于羽毛球, 足球可能不需要;\r\n但是对于篮球可能就是需要的, 因为篮球场地很多都是外置的, 没有主营机构;\r\n亦或者设置为公共场馆, 这样就可以避免无人管理的问题, 但是需要我们去发现公共场馆.'),(2,'2019-03-14 11:01:50','免责声明','免责声明一定要注意, 对于活动发生期间的意外事件, 需要详细免责声明, 否则我们会很麻烦.'),(3,'2019-03-14 11:09:54','管理员','需要建立管理员表, 设置其等级');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

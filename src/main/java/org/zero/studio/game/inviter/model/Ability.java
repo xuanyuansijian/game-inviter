@@ -9,14 +9,17 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@Table(name="ability")
 @NamedQuery(name="Ability.findAll", query="SELECT a FROM Ability a")
 public class Ability implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	private short id;
 
+	@Column(nullable=false, length=255)
 	private String name;
 
 	public Ability() {

@@ -15,15 +15,32 @@ import java.math.BigInteger;
 public class ActivetyJoin implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="activety_id")
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
+	private String id;
+
+	@Column(name="activety_id", nullable=false)
 	private BigInteger activetyId;
 
-	@Column(name="player_id")
+	@Column(name="extra_number")
+	private byte extraNumber;
+
+	@Column(name="player_id", nullable=false)
 	private BigInteger playerId;
 
+	@Column(nullable=false)
 	private byte status;
 
 	public ActivetyJoin() {
+	}
+
+	public String getId() {
+		return this.id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public BigInteger getActivetyId() {
@@ -32,6 +49,14 @@ public class ActivetyJoin implements Serializable {
 
 	public void setActivetyId(BigInteger activetyId) {
 		this.activetyId = activetyId;
+	}
+
+	public byte getExtraNumber() {
+		return this.extraNumber;
+	}
+
+	public void setExtraNumber(byte extraNumber) {
+		this.extraNumber = extraNumber;
 	}
 
 	public BigInteger getPlayerId() {

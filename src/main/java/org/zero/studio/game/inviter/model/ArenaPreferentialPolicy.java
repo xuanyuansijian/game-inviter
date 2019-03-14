@@ -18,19 +18,20 @@ public class ArenaPreferentialPolicy implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String id;
+	@Column(unique=true, nullable=false)
+	private int id;
 
 	@Column(name="arena_id")
 	private int arenaId;
 
-	@Column(name="cash_amount")
+	@Column(name="cash_amount", precision=10)
 	private BigDecimal cashAmount;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="create_time")
 	private Date createTime;
 
-	@Column(name="red_packet_amount")
+	@Column(name="red_packet_amount", precision=10)
 	private BigDecimal redPacketAmount;
 
 	@Column(name="valid_period")
@@ -39,11 +40,11 @@ public class ArenaPreferentialPolicy implements Serializable {
 	public ArenaPreferentialPolicy() {
 	}
 
-	public String getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

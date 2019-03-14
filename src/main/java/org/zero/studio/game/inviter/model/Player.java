@@ -10,12 +10,14 @@ import java.util.Date;
  * 
  */
 @Entity
+@Table(name="player")
 @NamedQuery(name="Player.findAll", query="SELECT p FROM Player p")
 public class Player implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	private String id;
 
 	private byte age;
@@ -30,11 +32,13 @@ public class Player implements Serializable {
 	@Column(name="last_update_time")
 	private Date lastUpdateTime;
 
+	@Column(length=255)
 	private String name;
 
+	@Column(length=255)
 	private String nickname;
 
-	@Column(name="phone_number")
+	@Column(name="phone_number", length=255)
 	private String phoneNumber;
 
 	public Player() {

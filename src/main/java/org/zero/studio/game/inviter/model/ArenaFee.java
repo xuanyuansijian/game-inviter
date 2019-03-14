@@ -18,7 +18,8 @@ public class ArenaFee implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String id;
+	@Column(unique=true, nullable=false)
+	private int id;
 
 	@Column(name="arena_id")
 	private int arenaId;
@@ -40,6 +41,7 @@ public class ArenaFee implements Serializable {
 	@Column(name="favourable_end_time")
 	private Date favourableEndTime;
 
+	@Column(precision=10)
 	private BigDecimal fee;
 
 	private byte level;
@@ -49,11 +51,11 @@ public class ArenaFee implements Serializable {
 	public ArenaFee() {
 	}
 
-	public String getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

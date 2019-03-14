@@ -11,26 +11,27 @@ import java.util.Date;
  * 
  */
 @Entity
+@Table(name="wallet")
 @NamedQuery(name="Wallet.findAll", query="SELECT w FROM Wallet w")
 public class Wallet implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="player_id")
+	@Column(name="player_id", unique=true, nullable=false, length=255)
 	private String playerId;
 
 	@Column(name="arena_id")
 	private int arenaId;
 
-	@Column(name="cash_amount")
+	@Column(name="cash_amount", precision=10)
 	private BigDecimal cashAmount;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="last_update_time")
 	private Date lastUpdateTime;
 
-	@Column(name="red_packet_amount")
+	@Column(name="red_packet_amount", precision=10)
 	private BigDecimal redPacketAmount;
 
 	public Wallet() {

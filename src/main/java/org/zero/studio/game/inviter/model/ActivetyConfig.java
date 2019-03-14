@@ -16,14 +16,16 @@ public class ActivetyConfig implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	private short id;
 
-	@Column(name="abililty_id")
+	@Column(name="abililty_id", nullable=false)
 	private short abililtyId;
 
-	@Column(name="gender_limit")
+	@Column(name="gender_limit", nullable=false)
 	private byte genderLimit;
 
+	@Column(nullable=false, length=50)
 	private String name;
 
 	public ActivetyConfig() {

@@ -16,9 +16,10 @@ public class AbilityLevel implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	private int id;
 
-	@Column(name="ability_id")
+	@Column(name="ability_id", nullable=false)
 	private short abilityId;
 
 	@Lob
@@ -26,7 +27,7 @@ public class AbilityLevel implements Serializable {
 
 	private byte level;
 
-	@Column(name="level_name")
+	@Column(name="level_name", length=255)
 	private String levelName;
 
 	public AbilityLevel() {

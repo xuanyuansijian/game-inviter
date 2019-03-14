@@ -16,10 +16,13 @@ public class ActivetyLevel implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	private byte id;
 
+	@Column(length=255)
 	private String comment;
 
+	@Column(nullable=false, length=255)
 	private String name;
 
 	public ActivetyLevel() {

@@ -16,20 +16,35 @@ import java.math.BigInteger;
 public class ArenaCourtFixSchedule implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="arena_court_id")
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
+	private int id;
+
+	@Column(name="arena_court_id", nullable=false)
 	private int arenaCourtId;
 
+	@Column(nullable=false)
 	private byte clock;
 
 	@Column(name="player_id")
 	private BigInteger playerId;
 
-	@Column(name="utility_time")
+	@Column(name="utility_time", nullable=false)
 	private Timestamp utilityTime;
 
+	@Column(nullable=false)
 	private byte week;
 
 	public ArenaCourtFixSchedule() {
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getArenaCourtId() {

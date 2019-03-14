@@ -16,13 +16,15 @@ public class ArenaCourt implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	private int id;
 
-	@Column(name="arena_id")
+	@Column(name="arena_id", nullable=false)
 	private int arenaId;
 
 	private byte level;
 
+	@Column(length=255)
 	private String number;
 
 	private byte status;

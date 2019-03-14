@@ -16,11 +16,13 @@ public class PlayerLoginType implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	private short id;
 
-	@Column(name="is_need_password")
+	@Column(name="is_need_password", nullable=false)
 	private byte isNeedPassword;
 
+	@Column(nullable=false, length=50)
 	private String name;
 
 	public PlayerLoginType() {

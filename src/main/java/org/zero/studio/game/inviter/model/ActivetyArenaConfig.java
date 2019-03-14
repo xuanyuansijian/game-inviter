@@ -16,9 +16,10 @@ public class ActivetyArenaConfig implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	private int id;
 
-	@Column(name="arean_id")
+	@Column(name="arean_id", nullable=false)
 	private int areanId;
 
 	@Column(name="auto_cancel_time_difference")

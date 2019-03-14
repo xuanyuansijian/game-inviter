@@ -19,10 +19,13 @@ public class FlowRedPacketIn implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false, length=255)
 	private String id;
 
+	@Column(precision=10)
 	private BigDecimal amount;
 
+	@Column(length=255)
 	private String comment;
 
 	@Temporal(TemporalType.TIMESTAMP)

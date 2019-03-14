@@ -19,6 +19,7 @@ public class ArenaCourtReserve implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(unique=true, nullable=false)
 	private String id;
 
 	@Column(name="arena_court_id")
@@ -31,6 +32,7 @@ public class ArenaCourtReserve implements Serializable {
 	@Column(name="begin_time")
 	private Date beginTime;
 
+	@Column(length=255)
 	private String comment;
 
 	@Column(name="duration_hours")
@@ -40,6 +42,7 @@ public class ArenaCourtReserve implements Serializable {
 	@Column(name="end_time")
 	private Date endTime;
 
+	@Column(precision=10)
 	private BigDecimal fee;
 
 	@Temporal(TemporalType.TIMESTAMP)
